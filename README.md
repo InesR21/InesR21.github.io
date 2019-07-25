@@ -1,1 +1,1 @@
-#SimonDice
+# simonDice
