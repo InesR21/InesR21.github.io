@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simon Dice</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <style>
+      body {
+          margin: 0;
+          background:#D9F1EF;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          }
+        .gameboard {
+          height: 50vh;
+          width: auto;
+          border-radius: 50%;
+          overflow: hidden;
+          margin: 25px auto;
+          max-height: 60vh;
+          max-width: 60vh;
+        }
+        .color {
+          width: 50%;
+          height: 50%;
+          display: inline-block;
+        }
+        .left {
+          float: left;
+        }
+        .right {
+          float: left;
+        }
+        .celeste {
+          background: #22a6b3;
+        }
+        .celeste.light {
+          background: #7ed6df;
+        }
+        .violeta {
+          background: #be2edd;
+        }
+        .violeta.light {
+          background: #e056fd;
+        }
+        .naranja {
+          background: #f0932b;
+        }
+        .naranja.light {
+          background: #ffbe76;
+        }
+        .verde {
+          background: #6ab04c;
+        }
+        .verde.light {
+          background: #badc58;
+        }
+        .btn-start {
+          background: #D9F1EF;
+          color: #2c3e50;
+          font-size: 1.5rem;
+         
+        }
+        .hide {
+          display: none;
+        }
+        * {
+          font-family: 'Courier New', Courier, monospace;
+          font-weight: 600;
+        }
+        #numero-nivel {
+            margin-left: 20px;
+        }
+        .nivel {
+          color: #090909;
+          font-size: 1em;
+          border: 1px solid #B0D5CF;
+          border-radius: 5px;
+          
+          text-align: center
+      }
+      .marg{
+        margin-top: 15%;
+      }
+      .flotarD{
+        float: right;
+        
+      }
+      .btnCentro{
+        margin-left: 37%;
+      }
+      .d {
+        display: inline-block;
+        }
+        .titu{
+          margin-left: 80px;
+        }
+
+      /*FOOTER inicio*/
+      .sm-footer {
+          display: block;
+          background: rgba(235, 240, 240, 0.788);
+          margin: 2em 0 0 0;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+      }
+      .sm-footer ul {
+          margin: 0;
+          padding: 0;
+          float: right;
+      }
+      .sm-footer ul li {
+      display: inline-block;
+      }
+      .sm-footer ul li {
+      list-style: none;
+      }
+    /*FOOTER FIN*/
+
+
+/*media querys inicio*/
+      @media (max-width: 800px) { 
+
+        .btnStart button {
+          width: 100%;
+          margin-bottom: 2%;
+       }
+       .bajaCaja{
+         margin-top: 50px;
+       }
+
+       .nivel {
+
+          font-size: 1.5em;
+          border: 3px solid #B0D5CF;
+      }
+        .btnCentro{
+        margin-left: 0;
+      }
+      .titu{
+          margin-left: 0;
+        }
+        .d {
+        margin-bottom: 1%;
+        }
+        .titu{
+          margin-left: 0;
+        }
+
+      }
+      /*media querys fin*/
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6 d">
+                <div class="nivel nombJugador">
+                  <span>Jugador: </span><span id="jugadorNombre"></span>
+                </div>
+            </div>
+          <div class="col-md-6 d flotarD lev">
+              <div class="nivel level">
+                <span>Nivel:</span><span id="numero-nivel">1</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="gameboard">
+              <div id="celeste" class="color celeste left" data-color="celeste"></div>
+              <div id="violeta" class="color violeta right" data-color="violeta"></div>
+              <div id="naranja" class="color naranja left" data-color="naranja"></div>
+              <div id="verde" class="color verde right" data-color="verde"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-4 btnCentro">
+            <div class="btnStart">
+              <button id="btnEmpezar" class="btn-start btn btn-primary btn-lg" onclick="empezarJuego()">Empezar a jugar!</button>  
+            </div> 
+          </div>
+        </div>
+    
+        <section class="sm-footer">
+          <div class="container pt-1 pb-1">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-12">
+                <ul class="align-self-end">
+                  <li><a href="https://www.instagram.com/rojas9321/" target="_blank"><i class="fab fa-instagram"></i></a></li> <!-- icono sm -->
+                  <li><a href="https://github.com/InesR21" target="_blank"><i class="fab fa-github-square"></i></a></li> <!-- icono sm -->
+                  <li><a href="https://twitter.com/Ines_RC" target="_blank"><i class="fab fa-twitter-square"></i></a></li> <!-- icono sm -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div>
+          <audio id="tick" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tink.wav"></audio>
+          <audio id="gano" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/openhat.wav"></audio>
+          <audio id="perdio" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/clap.wav"></audio>
+        </div> 
+      </div>
+      
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+      let nombreJug = prompt('Hola, quieres jugar? Dime tu nombre', "Anónimo")
+      document.getElementById('jugadorNombre').innerHTML = nombreJug
+
+</script>
+    <script type="text/javascript">
+        const celeste = document.getElementById('celeste')
+        const violeta = document.getElementById('violeta')
+        const naranja = document.getElementById('naranja')
+        const verde = document.getElementById('verde')
+        const btnEmpezar = document.getElementById('btnEmpezar')
+        const ultimoNivel = 20
+        const audio = document.getElementById('tick')
+        const ganar = document.getElementById('gano')
+        const perder = document.getElementById('perdio')
+
+        class Juego {
+          
+          constructor() {
+            this.inicializar = this.inicializar.bind(this)
+            this.inicializar()
+            this.generarSecuencia()
+            setTimeout(() => {
+            this.siguienteNivel()
+            }, 300)
+            
+          }
+          inicializar() {
+            this.siguienteNivel = this.siguienteNivel.bind(this)
+            this.elegirColor = this.elegirColor.bind(this)
+            this.toggleBtnEmpezar()
+            this.nivel = 1
+            this.colores = {
+              celeste,
+              violeta,
+              naranja,
+              verde
+            }
+         
+          }
+          toggleBtnEmpezar() {
+            if (btnEmpezar.classList.contains('hide')) {
+            btnEmpezar.classList.remove('hide')
+            } else {
+              btnEmpezar.classList.add('hide')
+            }
+          }
+          generarSecuencia() {
+            this.secuencia = new Array(ultimoNivel).fill(0).map(n => Math.floor(Math.random() * 4))
+
+          }
+          siguienteNivel() {
+
+            this.subnivel = 0
+            document.getElementById('numero-nivel').innerHTML = this.nivel;
+            this.iluminarSecuencia()
+            this.agregarEventosClick()
+          }
+
+            transformarNumeroAColor(numero) {
+              switch (numero) {
+                  case 0:
+                    return 'celeste'
+                  case 1:
+                    return 'violeta'
+                  case 2:
+                    return 'naranja'
+                  case 3:
+                    return 'verde'
+              }
+            }
+
+            transformarColorANumero(color) {
+             
+              switch (color) {
+                  case 'celeste':
+                    return 0
+                  case 'violeta':
+                    return 1
+                  case 'naranja':
+                    return 2
+                  case 'verde':
+                    return 3
+              }
+            }
+
+          iluminarSecuencia() {
+            for (let i = 0; i< this.nivel; i++) {
+                let color = this.transformarNumeroAColor(this.secuencia[i])
+                setTimeout(() => this.iluminarColor(color), 400 * i)
+            }
+          }
+          iluminarColor(color) {
+            this.colores[color].classList.add('light')
+            audio.play();
+            setTimeout(() => this.apagarColor(color), 100)
+          }
+          apagarColor(color) {
+            this.colores[color].classList.remove('light')
+          }
+          agregarEventosClick() {
+            this.colores.celeste.addEventListener('click', this.elegirColor)
+            this.colores.verde.addEventListener('click', this.elegirColor)
+            this.colores.violeta.addEventListener('click', this.elegirColor)
+            this.colores.naranja.addEventListener('click', this.elegirColor)
+          }
+          eliminarEventosClick() {
+            this.colores.celeste.removeEventListener('click', this.elegirColor)
+            this.colores.verde.removeEventListener('click', this.elegirColor)
+            this.colores.violeta.removeEventListener('click', this.elegirColor)
+            this.colores.naranja.removeEventListener('click', this.elegirColor)
+          }
+          elegirColor(ev) {
+            const nombreColor = ev.target.dataset.color
+            const numeroColor = this.transformarColorANumero(nombreColor)
+            this.iluminarColor(nombreColor)
+              
+            if (numeroColor === this.secuencia[this.subnivel]) {
+              this.subnivel++
+              if (this.subnivel === this.nivel) {
+                this.nivel++
+                this.eliminarEventosClick()
+                  if (this.nivel === (ultimoNivel + 1)) {
+                      this.gano()
+                      console.log("gano")
+                    } else {
+                      setTimeout(this.siguienteNivel, 700)
+                      console.log("siguienteNivel", this.nivel)
+                      }
+                }
+            } else {
+                this.perdio()
+            }
+          }
+
+            gano() {
+              ganar.play();
+              swal('¡Felicitaciones, ganaste el Juego!', 'Autor Del Juego: InesR', 'success')
+                .then(this.inicializar)
+            }
+
+            perdio() {
+              perder.play();
+              swal('¡lo siento,' + ' ' + nombreJug + ' ' + 'PERDISTE el Juego!', 'Autor Del Juego: InesR', 'error')
+                .then(() => {
+                  this.eliminarEventosClick()
+                  this.inicializar()
+                })
+            }
+
+
+        }
+        function empezarJuego() {
+          var juego = new Juego()
+         
+        }
+        
+</script>
+</body>
+</html>
