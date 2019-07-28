@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simon Dice</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
@@ -38,35 +38,38 @@
         .right {
           float: left;
         }
-        .celeste {
-          background: #22a6b3;
+        .rojo {
+          background: #c23337;
+          filter: drop-shadow(2px 4px 6px black);
         }
-        .celeste.light {
-          background: #7ed6df;
+        .rojo.light {
+          filter: brightness(1.75);
         }
-        .violeta {
-          background: #be2edd;
+        .azul {
+          background: #2f5f8d;
         }
-        .violeta.light {
-          background: #e056fd;
+        .azul.light {
+          filter: brightness(1.75);
         }
-        .naranja {
-          background: #f0932b;
+        .amarillo {
+          background: #feee00;
         }
-        .naranja.light {
-          background: #ffbe76;
+        .amarillo.light {
+          filter: sepia(0.5);;
         }
         .verde {
-          background: #6ab04c;
+          background: #228b57;
+          filter: drop-shadow(2px 4px 6px black);
         }
         .verde.light {
-          background: #badc58;
+          filter: brightness(1.75);
         }
         .btn-start {
           background: #D9F1EF;
-          color: #2c3e50;
+          color: #26527c;
           font-size: 1.5rem;
           font-weight: 600;
+          border-color: #2f5f8d;
          
         }
         .hide {
@@ -80,9 +83,9 @@
             margin-left: 20px;
         }
         .nivel {
-          color: #090909;
+          color: #26527c;
           font-size: 1em;
-          border: 1px solid #B0D5CF;
+          border: 1px solid #2f5f8d;
           border-radius: 5px;
           
           text-align: center
@@ -142,7 +145,7 @@
        .nivel {
 
           font-size: 1.5em;
-          border: 3px solid #B0D5CF;
+          border: 1px solid #2f5f8d;
       }
         .btnCentro{
         margin-left: 0;
@@ -164,7 +167,7 @@
         }
         .nivel {
           font-size: 1em;
-          border: 1px solid #B0D5CF;
+          border: 1px solid #2f5f8d;
         }
       }
       /*media querys fin*/
@@ -191,9 +194,9 @@
       <div class="row">
         <div class="col-md-12">
           <div class="gameboard">
-              <div id="celeste" class="color celeste left" data-color="celeste"></div>
-              <div id="violeta" class="color violeta right" data-color="violeta"></div>
-              <div id="naranja" class="color naranja left" data-color="naranja"></div>
+              <div id="rojo" class="color rojo left" data-color="rojo"></div>
+              <div id="azul" class="color azul right" data-color="azul"></div>
+              <div id="amarillo" class="color amarillo left" data-color="amarillo"></div>
               <div id="verde" class="color verde right" data-color="verde"></div>
             </div>
           </div>
@@ -236,9 +239,9 @@
 
 </script>
     <script type="text/javascript">
-        const celeste = document.getElementById('celeste')
-        const violeta = document.getElementById('violeta')
-        const naranja = document.getElementById('naranja')
+        const rojo = document.getElementById('rojo')
+        const azul = document.getElementById('azul')
+        const amarillo = document.getElementById('amarillo')
         const verde = document.getElementById('verde')
         const btnEmpezar = document.getElementById('btnEmpezar')
         const ultimoNivel = 20
@@ -263,9 +266,9 @@
             this.toggleBtnEmpezar()
             this.nivel = 1
             this.colores = {
-              celeste,
-              violeta,
-              naranja,
+              rojo,
+              azul,
+              amarillo,
               verde
             }
          
@@ -292,11 +295,11 @@
             transformarNumeroAColor(numero) {
               switch (numero) {
                   case 0:
-                    return 'celeste'
+                    return 'rojo'
                   case 1:
-                    return 'violeta'
+                    return 'azul'
                   case 2:
-                    return 'naranja'
+                    return 'amarillo'
                   case 3:
                     return 'verde'
               }
@@ -305,11 +308,11 @@
             transformarColorANumero(color) {
              
               switch (color) {
-                  case 'celeste':
+                  case 'rojo':
                     return 0
-                  case 'violeta':
+                  case 'azul':
                     return 1
-                  case 'naranja':
+                  case 'amarillo':
                     return 2
                   case 'verde':
                     return 3
@@ -331,16 +334,16 @@
             this.colores[color].classList.remove('light')
           }
           agregarEventosClick() {
-            this.colores.celeste.addEventListener('click', this.elegirColor)
+            this.colores.rojo.addEventListener('click', this.elegirColor)
             this.colores.verde.addEventListener('click', this.elegirColor)
-            this.colores.violeta.addEventListener('click', this.elegirColor)
-            this.colores.naranja.addEventListener('click', this.elegirColor)
+            this.colores.azul.addEventListener('click', this.elegirColor)
+            this.colores.amarillo.addEventListener('click', this.elegirColor)
           }
           eliminarEventosClick() {
-            this.colores.celeste.removeEventListener('click', this.elegirColor)
+            this.colores.rojo.removeEventListener('click', this.elegirColor)
             this.colores.verde.removeEventListener('click', this.elegirColor)
-            this.colores.violeta.removeEventListener('click', this.elegirColor)
-            this.colores.naranja.removeEventListener('click', this.elegirColor)
+            this.colores.azul.removeEventListener('click', this.elegirColor)
+            this.colores.amarillo.removeEventListener('click', this.elegirColor)
           }
           elegirColor(ev) {
             const nombreColor = ev.target.dataset.color
@@ -367,13 +370,17 @@
 
             gano() {
               ganar.play();
-              swal('¡Felicitaciones, ganaste el Juego!', 'Autor Del Juego: InesR', 'success')
+              swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE!', 'Crees que algun amigo lo puede hacer mejor?', 'success', {
+     icon: "img/w.png"
+  })
                 .then(this.inicializar)
             }
 
             perdio() {
               perder.play();
-              swal('¡lo siento,' + ' ' + nombreJug + ' ' + 'PERDISTE el Juego!', 'Autor Del Juego: InesR', 'error')
+              swal('¡lo siento,' + ' ' + nombreJug + ' ' + 'PERDISTE!', 'Crees que algun amigo lo puede hacer mejor?', 'error', {
+     icon: "img/perder.png"
+  })
                 .then(() => {
                   this.eliminarEventosClick()
                   this.inicializar()
