@@ -244,16 +244,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script>
-      let nombreJug = prompt('Hola, quieres jugar? Dime tu nombre', "Anónimo")
+      var nombreJug = prompt('Hola, quieres jugar? Dime tu nombre')
 
      
-          if (nombreJug === false){
-            swal( 'no pusiste tu nombre, por ende te llamaremos "Misterioso"', 'error', )
-            document.getElementById('jugadorNombre').innerHTML = 'Misterioso'
+          if (nombreJug === null ){
+            nombreJug ='Misterioso'
+            swal( 'No pusiste tu nombre, asi que te llamaremos "Misterioso"', 'error', )
+            document.getElementById('jugadorNombre').innerHTML = nombreJug
+           
 
           } else if (nombreJug === "") {
-            swal( 'no pusiste tu nombre, por ende te llamaremos "Misterioso"', 'error', )
-            document.getElementById('jugadorNombre').innerHTML = 'Misterioso'
+            nombreJug ='Misterioso'
+            swal( 'No pusiste tu nombre, asi que te llamaremos "Misterioso"', 'error', )
+            document.getElementById('jugadorNombre').innerHTML = nombreJug
+            
+
            
           } else{
 
@@ -406,7 +411,7 @@
 
             gano() {
               ganar.play();
-              swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE!', 'Crees que algun amigo lo puede hacer mejor?', 'success', {
+              swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'success', {
      icon: "img/w.png"
   })
                 .then(this.inicializar)
@@ -414,8 +419,8 @@
 
             perdio() {
               perder.play();
-              swal('¡lo siento,' + ' ' + nombreJug + ' ' + 'PERDISTE!', 'Crees que algun amigo lo puede hacer mejor?', 'error', {
-     icon: "img/perder.png"
+              swal('¡Lo siento,' + ' ' + nombreJug + ' ' + 'PERDISTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'error', {
+     icon: "img/p.png"
   })
                 .then(() => {
                   this.eliminarEventosClick()
