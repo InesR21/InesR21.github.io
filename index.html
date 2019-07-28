@@ -245,7 +245,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script>
       let nombreJug = prompt('Hola, quieres jugar? Dime tu nombre', "Anónimo")
-      document.getElementById('jugadorNombre').innerHTML = nombreJug
+
+     
+          if (nombreJug === false){
+            swal( 'no pusiste tu nombre, por ende te llamaremos "Misterioso"', 'error', )
+            document.getElementById('jugadorNombre').innerHTML = 'Misterioso'
+
+          } else if (nombreJug === "") {
+            swal( 'no pusiste tu nombre, por ende te llamaremos "Misterioso"', 'error', )
+            document.getElementById('jugadorNombre').innerHTML = 'Misterioso'
+           
+          } else{
+
+          document.getElementById('jugadorNombre').innerHTML = nombreJug
+          }
+       
+
+
+     
 
 </script>
     <script type="text/javascript">
@@ -281,6 +298,7 @@
               amarillo,
               verde
             }
+            this.iluminando = false;
          
           }
           toggleBtnEmpezar() {
@@ -330,6 +348,7 @@
             }
 
           iluminarSecuencia() {
+            this.iluminando = true;
             for (let i = 0; i< this.nivel; i++) {
                 let color = this.transformarNumeroAColor(this.secuencia[i])
                 setTimeout(() => this.iluminarColor(color), 400 * i)
@@ -342,6 +361,7 @@
           }
           apagarColor(color) {
             this.colores[color].classList.remove('light')
+            this.iluminando = false;
           }
           agregarEventosClick() {
             this.colores.rojo.addEventListener('click', this.elegirColor)
@@ -356,27 +376,33 @@
             this.colores.amarillo.removeEventListener('click', this.elegirColor)
           }
           elegirColor(ev) {
-            const nombreColor = ev.target.dataset.color
-            const numeroColor = this.transformarColorANumero(nombreColor)
-            this.iluminarColor(nombreColor)
-              
-            if (numeroColor === this.secuencia[this.subnivel]) {
-              this.subnivel++
-              if (this.subnivel === this.nivel) {
-                this.nivel++
-                this.eliminarEventosClick()
-                  if (this.nivel === (ultimoNivel + 1)) {
-                      this.gano()
-                      console.log("gano")
-                    } else {
-                      setTimeout(this.siguienteNivel, 700)
-                      console.log("siguienteNivel", this.nivel)
-                      }
-                }
-            } else {
-                this.perdio()
-            }
-          }
+            if(this.iluminando){
+                console.log('qui no hace nada')
+
+              }else{
+
+              const nombreColor = ev.target.dataset.color
+              const numeroColor = this.transformarColorANumero(nombreColor)
+              this.iluminarColor(nombreColor)
+                
+              if (numeroColor === this.secuencia[this.subnivel]) {
+                this.subnivel++
+                if (this.subnivel === this.nivel) {
+                  this.nivel++
+                  this.eliminarEventosClick()
+                    if (this.nivel === (ultimoNivel + 1)) {
+                        this.gano()
+                        console.log("gano")
+                      } else {
+                        setTimeout(this.siguienteNivel, 700)
+                        console.log("siguienteNivel", this.nivel)
+                        }
+                  }
+              } else {
+                  this.perdio()
+              }
+              }
+        }
 
             gano() {
               ganar.play();
