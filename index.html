@@ -286,6 +286,7 @@
         const perder = document.getElementById('perdio')
         var seconds = 10;
         var intervalId = null;
+        var timer = document.getElementById('timer');
 
         class Juego {
           
@@ -419,7 +420,7 @@
               clearInterval(intervalId);
               ganar.play();
               seconds = 10
-              timer.innerHTML = '<span class="seconds">' + seconds + ' </span>';
+              timer.innerHTML = seconds;
               swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'success', {
               icon: "img/w.png"
               })
@@ -436,7 +437,7 @@
                   this.eliminarEventosClick()
                   this.inicializar()
                   seconds = 10
-                  timer.innerHTML = '<span class="seconds">' + seconds + ' </span>'; 
+                  timer.innerHTML = seconds; 
                   
                 
                 })
@@ -446,13 +447,13 @@
           }
         function empezarJuego() {
           var juego = new Juego()
-          var timer = document.getElementById('timer');
+          
           $(".gameboard").click(function (e) {seconds = 10;});
           intervalId = setInterval(function () {segundos(seconds);}, 1000);
 
           function segundos(e){
             seconds = seconds - 1
-            timer.innerHTML = '<span class="seconds">' + seconds + ' </span>'; 
+            timer.innerHTML = seconds; 
               if (seconds === 0) {
                 //console.log(juego, "objeto");
                 clearInterval(intervalId);
