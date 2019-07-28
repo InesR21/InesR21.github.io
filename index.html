@@ -227,7 +227,7 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-12">
                 <ul class="align-self-end">
-                    <li class="colorTimer"><span>Tiempo: </span><span id="timer">0</span><span><b>S</b></span></li>
+                    <li class="colorTimer"><span>Tiempo: </span><span id="timer">10</span><span><b>S</b></span></li>
                   <li><a href="https://www.instagram.com/rojas9321/" target="_blank"><i class="fab fa-instagram "></i></a></li> 
                   <li><a href="https://github.com/InesR21" target="_blank"><i class="fab fa-github-square "></i></a></li> 
                   <li><a href="https://twitter.com/Ines_RC" target="_blank"><i class="fab fa-twitter-square "></i></a></li>
@@ -284,7 +284,7 @@
         const audio = document.getElementById('tick')
         const ganar = document.getElementById('gano')
         const perder = document.getElementById('perdio')
-        var seconds = 0;
+        var seconds = 10;
         var intervalId = null;
 
         class Juego {
@@ -418,7 +418,7 @@
             gano() {
               clearInterval(intervalId);
               ganar.play();
-              seconds = 0
+              seconds = 10
               timer.innerHTML = '<span class="seconds">' + seconds + ' </span>';
               swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'success', {
               icon: "img/w.png"
@@ -435,7 +435,7 @@
               .then(() => {
                   this.eliminarEventosClick()
                   this.inicializar()
-                  seconds = 0
+                  seconds = 10
                   timer.innerHTML = '<span class="seconds">' + seconds + ' </span>'; 
                   
                 
@@ -446,15 +446,14 @@
           }
         function empezarJuego() {
           var juego = new Juego()
-          var target_date = new Date().getTime()
           var timer = document.getElementById('timer');
-          $(".gameboard").click(function (e) {seconds = 0;});
+          $(".gameboard").click(function (e) {seconds = 10;});
           intervalId = setInterval(function () {segundos(seconds);}, 1000);
 
           function segundos(e){
-            seconds = seconds + 1
+            seconds = seconds - 1
             timer.innerHTML = '<span class="seconds">' + seconds + ' </span>'; 
-              if (seconds === 10) {
+              if (seconds === 0) {
                 //console.log(juego, "objeto");
                 clearInterval(intervalId);
                 juego.perdio()
