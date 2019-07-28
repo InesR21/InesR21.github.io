@@ -32,6 +32,9 @@
           height: 50%;
           display: inline-block;
         }
+        .colorTimer{
+          color: #c23337;
+        }
         .left {
           float: left;
         }
@@ -224,9 +227,10 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-12">
                 <ul class="align-self-end">
-                  <li><a href="https://www.instagram.com/rojas9321/" target="_blank"><i class="fab fa-instagram "></i></a></li> <!-- icono sm -->
-                  <li><a href="https://github.com/InesR21" target="_blank"><i class="fab fa-github-square "></i></a></li> <!-- icono sm -->
-                  <li><a href="https://twitter.com/Ines_RC" target="_blank"><i class="fab fa-twitter-square "></i></a></li> <!-- icono sm -->
+                    <li class="colorTimer"><span>Tiempo: </span><span id="timer">0</span><span><b>S</b></span></li>
+                  <li><a href="https://www.instagram.com/rojas9321/" target="_blank"><i class="fab fa-instagram "></i></a></li> 
+                  <li><a href="https://github.com/InesR21" target="_blank"><i class="fab fa-github-square "></i></a></li> 
+                  <li><a href="https://twitter.com/Ines_RC" target="_blank"><i class="fab fa-twitter-square "></i></a></li>
                 </ul>
               </div>
             </div>
@@ -249,13 +253,13 @@
      
           if (nombreJug === null ){
             nombreJug ='Misterioso'
-            swal( 'No pusiste tu nombre, asi que te llamaremos "Misterioso"', 'error', )
+            swal( 'No pusiste tu nombre, asi que te llamaremos Misterioso', 'error', )
             document.getElementById('jugadorNombre').innerHTML = nombreJug
            
 
           } else if (nombreJug === "") {
             nombreJug ='Misterioso'
-            swal( 'No pusiste tu nombre, asi que te llamaremos "Misterioso"', 'error', )
+            swal( 'No pusiste tu nombre, asi que te llamaremos Misterioso', 'error', )
             document.getElementById('jugadorNombre').innerHTML = nombreJug
             
 
@@ -276,10 +280,12 @@
         const amarillo = document.getElementById('amarillo')
         const verde = document.getElementById('verde')
         const btnEmpezar = document.getElementById('btnEmpezar')
-        const ultimoNivel = 20
+        const ultimoNivel = 30
         const audio = document.getElementById('tick')
         const ganar = document.getElementById('gano')
         const perder = document.getElementById('perdio')
+        var seconds = 0;
+        var intervalId = null;
 
         class Juego {
           
@@ -407,34 +413,54 @@
                   this.perdio()
               }
               }
-        }
+          }
 
             gano() {
+              clearInterval(intervalId);
               ganar.play();
+              seconds = 0
+              timer.innerHTML = '<span class="seconds">' + seconds + ' </span>';
               swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'success', {
-     icon: "img/w.png"
-  })
-                .then(this.inicializar)
-            }
+              icon: "img/w.png"
+              })
+              .then(this.inicializar)
+              }
 
             perdio() {
+              clearInterval(intervalId);
               perder.play();
               swal('¡Lo siento,' + ' ' + nombreJug + ' ' + 'PERDISTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'error', {
-     icon: "img/p.png"
-  })
-                .then(() => {
+                icon: "img/p.png"
+              })
+              .then(() => {
                   this.eliminarEventosClick()
                   this.inicializar()
+                  seconds = 0
+                  timer.innerHTML = '<span class="seconds">' + seconds + ' </span>'; 
+                  
+                
                 })
             }
 
 
-        }
+          }
         function empezarJuego() {
           var juego = new Juego()
-         
-        }
-        
+          var target_date = new Date().getTime()
+          var timer = document.getElementById('timer');
+          $(".gameboard").click(function (e) {seconds = 0;});
+          intervalId = setInterval(function () {segundos(seconds);}, 1000);
+
+          function segundos(e){
+            seconds = seconds + 1
+            timer.innerHTML = '<span class="seconds">' + seconds + ' </span>'; 
+              if (seconds === 10) {
+                //console.log(juego, "objeto");
+                clearInterval(intervalId);
+                juego.perdio()
+                }
+            }
+          }  
 </script>
 </body>
 </html>
