@@ -31,11 +31,11 @@ var nombreJug = prompt('Hola, quieres jugar? Dime tu nombre')
         const amarillo = document.getElementById('amarillo')
         const verde = document.getElementById('verde')
         const btnEmpezar = document.getElementById('btnEmpezar')
-        const ultimoNivel = 30
+        const ultimoNivel = 31
         const audio = document.getElementById('tick')
         const ganar = document.getElementById('gano')
         const perder = document.getElementById('perdio')
-        var seconds = 10;
+        var seconds = 30;
         var intervalId = null;
         var timer = document.getElementById('timer');
 
@@ -170,7 +170,7 @@ var nombreJug = prompt('Hola, quieres jugar? Dime tu nombre')
             gano() {
               clearInterval(intervalId);
               ganar.play();
-              seconds = 10
+              seconds = 30
               timer.innerHTML = seconds;
               swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'success', {
               icon: "img/w.png"
@@ -187,7 +187,7 @@ var nombreJug = prompt('Hola, quieres jugar? Dime tu nombre')
               .then(() => {
                   this.eliminarEventosClick()
                   this.inicializar()
-                  seconds = 10
+                  seconds = 30
                   timer.innerHTML = seconds; 
                   
                 
@@ -199,7 +199,7 @@ var nombreJug = prompt('Hola, quieres jugar? Dime tu nombre')
         function empezarJuego() {
           var juego = new Juego()
           
-          $(".gameboard").click(function (e) {seconds = 10;});
+          $(".gameboard").click(function (e) {seconds = 30;});
           intervalId = setInterval(function () {segundos(seconds);}, 1000);
 
           function segundos(e){
