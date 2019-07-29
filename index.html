@@ -10,200 +10,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-    <style>
-      body {
-          margin: 0;
-          background:#D9F1EF;
-          height: 100vh;
-          display: flex;
-          align-items: center;
-          }
-        .gameboard {
-          height: 50vh;
-          width: auto;
-          border-radius: 50%;
-          overflow: hidden;
-          margin: 25px auto;
-          max-height: 60vh;
-          max-width: 60vh;
-        }
-        .color {
-          width: 50%;
-          height: 50%;
-          display: inline-block;
-        }
-        .colorTimer{
-          color: #c23337;
-        }
-        .left {
-          float: left;
-        }
-        .right {
-          float: left;
-        }
-        .rojo {
-          background: #c23337;
-          filter: drop-shadow(2px 4px 6px black);
-        }
-        .rojo.light {
-          filter: brightness(1.75);
-        }
-        .azul {
-          background: #2f5f8d;
-        }
-        .azul.light {
-          filter: brightness(1.75);
-        }
-        .amarillo {
-          background: #feee00;
-        }
-        .amarillo.light {
-          filter: sepia(0.5);;
-        }
-        .verde {
-          background: #228b57;
-          filter: drop-shadow(2px 4px 6px black);
-        }
-        .verde.light {
-          filter: brightness(1.75);
-        }
-        .btn-start {
-          background: #D9F1EF;
-          color: #26527c;
-          font-size: 1.5rem;
-          font-weight: 600;
-          border-color: #2f5f8d;
-         
-        }
-        .hide {
-          display: none;
-        }
-        * {
-          font-family: 'Courier New', Courier, monospace;
-          font-weight: 600;
-        }
-        #numero-nivel {
-            margin-left: 20px;
-        }
-        .nivel {
-          color: #26527c;
-          font-size: 1em;
-          border: 1px solid #2f5f8d;
-          border-radius: 5px;
-          
-          text-align: center
-      }
-      .marg{
-        margin-top: 15%;
-      }
-      .flotarD{
-        float: right;
-        
-      }
-      .btnCentro{
-        margin-left: 37%;
-      }
-      .d {
-        display: inline-block;
-        }
-        .titu{
-          margin-left: 80px;
-        }
-
-      /*FOOTER inicio*/
-      .sm-footer {
-          display: block;
-          background: rgba(235, 240, 240, 0.788);
-          margin: 00 0 0;
-          position: absolute;
-         top: 0;
-          left: 0;
-          right: 0;
-      }
-      .sm-footer ul {
-          margin: 0;
-          padding: 0;
-          float: right;
-      }
-      .sm-footer ul li {
-      display: inline-block;
-      }
-      .sm-footer ul li {
-      list-style: none;
-      }
-    /*FOOTER FIN*/
-
-
-/*media querys inicio*/
-      @media (max-width: 800px) { 
-
-        .btnStart button {
-          width: 100%;
-          margin-bottom: 2%;
-       }
-       .bajaCaja{
-         margin-top: 50px;
-       }
-
-       .nivel {
-
-          font-size: 1.5em;
-          border: 1px solid #2f5f8d;
-      }
-        .btnCentro{
-        margin-left: 0;
-      }
-      .titu{
-          margin-left: 0;
-        }
-        .d {
-        margin-bottom: 1%;
-        }
-        .titu{
-          margin-left: 0;
-        }
-
-      }
-      @media (max-width: 295px) {
-        .btn-start {
-         font-size: 1rem;
-        }
-        .nivel {
-          font-size: 1em;
-          border: 1px solid #2f5f8d;
-        }
-        p{
-          margin-top: 25px;
-        }
-
-      }
-      @media (width: 700px) and (orientation: landscape) { 
-
-        .p {
-            margin-top: 155px;
-        }
-      }
-      /*media querys fin*/
-    </style>
+    <link href="css/simonDice.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
       <div class="row p">
         <div class="col-md-12">
-            <div class="col-md-6 d">
+          <div class="col-md-6 d">
                 <div class="nivel nombJugador">
                   <span>Jugador: </span><span id="jugadorNombre"></span>
                 </div>
-            </div>
+          </div>
           <div class="col-md-6 d flotarD lev">
               <div class="nivel level">
                 <span>Nivel:</span><span id="numero-nivel">1</span>
               </div>
-            </div>
+          </div>
         </div>
       </div>
-
-
       <div class="row">
         <div class="col-md-12">
           <div class="gameboard">
@@ -211,257 +35,41 @@
               <div id="azul" class="color azul right" data-color="azul"></div>
               <div id="amarillo" class="color amarillo left" data-color="amarillo"></div>
               <div id="verde" class="color verde right" data-color="verde"></div>
-            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6 offset-md-4 btnCentro">
-            <div class="btnStart">
-              <button id="btnEmpezar" class="btn-start btn btn-primary btn-lg" onclick="empezarJuego()">Empezar a jugar!</button>  
-            </div> 
-          </div>
-        </div>
-    
-        <section class="sm-footer">
-          <div class="container pt-1 pb-1">
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-12">
-                <ul class="align-self-end">
-                    <li class="colorTimer"><span>Tiempo: </span><span id="timer">10</span><span><b>S</b></span></li>
-                  <li><a href="https://www.instagram.com/rojas9321/" target="_blank"><i class="fab fa-instagram "></i></a></li> 
-                  <li><a href="https://github.com/InesR21" target="_blank"><i class="fab fa-github-square "></i></a></li> 
-                  <li><a href="https://twitter.com/Ines_RC" target="_blank"><i class="fab fa-twitter-square "></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div>
-          <audio id="tick" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tink.wav"></audio>
-          <audio id="gano" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/openhat.wav"></audio>
-          <audio id="perdio" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/clap.wav"></audio>
-        </div> 
       </div>
-      
+      <div class="row">
+        <div class="col-md-6 offset-md-4 btnCentro">
+          <div class="btnStart">
+            <button id="btnEmpezar" class="btn-start btn btn-primary btn-lg" onclick="empezarJuego()">Empezar a jugar!</button>  
+          </div> 
+        </div>
+      </div>
+      <section class="sm-footer">
+        <div class="container pt-1 pb-1">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+              <ul class="align-self-end">
+                <li class="colorTimer"><span>Tiempo: </span><span id="timer">10</span><span><b>S</b></span></li>
+                <li><a href="https://www.instagram.com/rojas9321/" target="_blank"><i class="fab fa-instagram "></i></a></li> 
+                <li><a href="https://github.com/InesR21" target="_blank"><i class="fab fa-github-square "></i></a></li> 
+                <li><a href="https://twitter.com/Ines_RC" target="_blank"><i class="fab fa-twitter-square "></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="sonidos">
+        <audio id="tick" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tink.wav"></audio>
+        <audio id="gano" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/openhat.wav"></audio>
+        <audio id="perdio" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/clap.wav"></audio>
+      </div> 
+    </div>  
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <script>
-      var nombreJug = prompt('Hola, quieres jugar? Dime tu nombre')
-
-     
-          if (nombreJug === null ){
-            nombreJug ='Misterioso'
-            swal( 'No pusiste tu nombre, asi que te llamaremos Misterioso', 'error', )
-            document.getElementById('jugadorNombre').innerHTML = nombreJug
-           
-
-          } else if (nombreJug === "") {
-            nombreJug ='Misterioso'
-            swal( 'No pusiste tu nombre, asi que te llamaremos Misterioso', 'error', )
-            document.getElementById('jugadorNombre').innerHTML = nombreJug
-            
-
-           
-          } else{
-
-          document.getElementById('jugadorNombre').innerHTML = nombreJug
-          }
-       
-
-
-     
-
-</script>
-    <script type="text/javascript">
-        const rojo = document.getElementById('rojo')
-        const azul = document.getElementById('azul')
-        const amarillo = document.getElementById('amarillo')
-        const verde = document.getElementById('verde')
-        const btnEmpezar = document.getElementById('btnEmpezar')
-        const ultimoNivel = 30
-        const audio = document.getElementById('tick')
-        const ganar = document.getElementById('gano')
-        const perder = document.getElementById('perdio')
-        var seconds = 10;
-        var intervalId = null;
-        var timer = document.getElementById('timer');
-
-        class Juego {
-          
-          constructor() {
-            this.inicializar = this.inicializar.bind(this)
-            this.inicializar()
-            this.generarSecuencia()
-            setTimeout(() => {
-            this.siguienteNivel()
-            }, 300)
-            
-          }
-          inicializar() {
-            this.siguienteNivel = this.siguienteNivel.bind(this)
-            this.elegirColor = this.elegirColor.bind(this)
-            this.toggleBtnEmpezar()
-            this.nivel = 1
-            this.colores = {
-              rojo,
-              azul,
-              amarillo,
-              verde
-            }
-            this.iluminando = false;
-         
-          }
-          toggleBtnEmpezar() {
-            if (btnEmpezar.classList.contains('hide')) {
-            btnEmpezar.classList.remove('hide')
-            } else {
-              btnEmpezar.classList.add('hide')
-            }
-          }
-          generarSecuencia() {
-            this.secuencia = new Array(ultimoNivel).fill(0).map(n => Math.floor(Math.random() * 4))
-
-          }
-          siguienteNivel() {
-
-            this.subnivel = 0
-            document.getElementById('numero-nivel').innerHTML = this.nivel;
-            this.iluminarSecuencia()
-            this.agregarEventosClick()
-          }
-
-            transformarNumeroAColor(numero) {
-              switch (numero) {
-                  case 0:
-                    return 'rojo'
-                  case 1:
-                    return 'azul'
-                  case 2:
-                    return 'amarillo'
-                  case 3:
-                    return 'verde'
-              }
-            }
-
-            transformarColorANumero(color) {
-             
-              switch (color) {
-                  case 'rojo':
-                    return 0
-                  case 'azul':
-                    return 1
-                  case 'amarillo':
-                    return 2
-                  case 'verde':
-                    return 3
-              }
-            }
-
-          iluminarSecuencia() {
-            this.iluminando = true;
-            for (let i = 0; i< this.nivel; i++) {
-                let color = this.transformarNumeroAColor(this.secuencia[i])
-                setTimeout(() => this.iluminarColor(color), 400 * i)
-            }
-          }
-          iluminarColor(color) {
-            this.colores[color].classList.add('light')
-            audio.play();
-            setTimeout(() => this.apagarColor(color), 100)
-          }
-          apagarColor(color) {
-            this.colores[color].classList.remove('light')
-            this.iluminando = false;
-          }
-          agregarEventosClick() {
-            this.colores.rojo.addEventListener('click', this.elegirColor)
-            this.colores.verde.addEventListener('click', this.elegirColor)
-            this.colores.azul.addEventListener('click', this.elegirColor)
-            this.colores.amarillo.addEventListener('click', this.elegirColor)
-          }
-          eliminarEventosClick() {
-            this.colores.rojo.removeEventListener('click', this.elegirColor)
-            this.colores.verde.removeEventListener('click', this.elegirColor)
-            this.colores.azul.removeEventListener('click', this.elegirColor)
-            this.colores.amarillo.removeEventListener('click', this.elegirColor)
-          }
-          elegirColor(ev) {
-            if(this.iluminando){
-                console.log('qui no hace nada')
-
-              }else{
-
-              const nombreColor = ev.target.dataset.color
-              const numeroColor = this.transformarColorANumero(nombreColor)
-              this.iluminarColor(nombreColor)
-                
-              if (numeroColor === this.secuencia[this.subnivel]) {
-                this.subnivel++
-                if (this.subnivel === this.nivel) {
-                  this.nivel++
-                  this.eliminarEventosClick()
-                    if (this.nivel === (ultimoNivel + 1)) {
-                        this.gano()
-                        console.log("gano")
-                      } else {
-                        setTimeout(this.siguienteNivel, 700)
-                        console.log("siguienteNivel", this.nivel)
-                        }
-                  }
-              } else {
-                  this.perdio()
-              }
-              }
-          }
-
-            gano() {
-              clearInterval(intervalId);
-              ganar.play();
-              seconds = 10
-              timer.innerHTML = seconds;
-              swal('¡Felicitaciones,' + ' ' + nombreJug + ' ' + 'GANASTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'success', {
-              icon: "img/w.png"
-              })
-              .then(this.inicializar)
-              }
-
-            perdio() {
-              clearInterval(intervalId);
-              perder.play();
-              swal('¡Lo siento,' + ' ' + nombreJug + ' ' + 'PERDISTE! en el nivel ' + ' ' +  this.nivel, '¿Crees que algun amigo lo puede hacer mejor? ¡Compártelo!', 'error', {
-                icon: "img/p.png"
-              })
-              .then(() => {
-                  this.eliminarEventosClick()
-                  this.inicializar()
-                  seconds = 10
-                  timer.innerHTML = seconds; 
-                  
-                
-                })
-            }
-
-
-          }
-        function empezarJuego() {
-          var juego = new Juego()
-          
-          $(".gameboard").click(function (e) {seconds = 10;});
-          intervalId = setInterval(function () {segundos(seconds);}, 1000);
-
-          function segundos(e){
-            seconds = seconds - 1
-            timer.innerHTML = seconds; 
-              if (seconds === 0) {
-                //console.log(juego, "objeto");
-                clearInterval(intervalId);
-                juego.perdio()
-                }
-            }
-          }  
-</script>
+    <script src="js/simonDice.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144734227-1"></script>
 <script>
@@ -471,6 +79,5 @@
 
   gtag('config', 'UA-144734227-1');
 </script>
-
 </body>
 </html>

@@ -1,0 +1,178 @@
+/*
+Estilos del Juego SimonDice si quieres probarlo puedes ir a 
+https://inesr21.github.io/
+hecho por InesR
+*/
+body {
+    margin: 0;
+    background:#D9F1EF;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    }
+  .gameboard {
+    height: 50vh;
+    width: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 25px auto;
+    max-height: 60vh;
+    max-width: 60vh;
+  }
+  .color {
+    width: 50%;
+    height: 50%;
+    display: inline-block;
+  }
+  .colorTimer{
+    color: #c23337;
+  }
+  .left {
+    float: left;
+  }
+  .right {
+    float: left;
+  }
+  .rojo {
+    background: #c23337;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+  .rojo.light {
+    filter: brightness(1.75);
+  }
+  .azul {
+    background: #2f5f8d;
+  }
+  .azul.light {
+    filter: brightness(1.75);
+  }
+  .amarillo {
+    background: #feee00;
+  }
+  .amarillo.light {
+    filter: sepia(0.5);;
+  }
+  .verde {
+    background: #228b57;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+  .verde.light {
+    filter: brightness(1.75);
+  }
+  .btn-start {
+    background: #D9F1EF;
+    color: #26527c;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-color: #2f5f8d;
+   
+  }
+  .hide {
+    display: none;
+  }
+  * {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+  }
+  #numero-nivel {
+      margin-left: 20px;
+  }
+  .nivel {
+    color: #26527c;
+    font-size: 1em;
+    border: 1px solid #2f5f8d;
+    border-radius: 5px;
+    
+    text-align: center
+}
+.marg{
+  margin-top: 15%;
+}
+.flotarD{
+  float: right;
+  
+}
+.btnCentro{
+  margin-left: 37%;
+}
+.d {
+  display: inline-block;
+  }
+  .titu{
+    margin-left: 80px;
+  }
+
+/*FOOTER inicio*/
+.sm-footer {
+    display: block;
+    background: rgba(235, 240, 240, 0.788);
+    margin: 00 0 0;
+    position: absolute;
+   top: 0;
+    left: 0;
+    right: 0;
+}
+.sm-footer ul {
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+.sm-footer ul li {
+display: inline-block;
+}
+.sm-footer ul li {
+list-style: none;
+}
+/*FOOTER FIN*/
+
+
+/*media querys inicio*/
+@media (max-width: 800px) { 
+
+  .btnStart button {
+    width: 100%;
+    margin-bottom: 2%;
+ }
+ .bajaCaja{
+   margin-top: 50px;
+ }
+
+ .nivel {
+
+    font-size: 1.5em;
+    border: 1px solid #2f5f8d;
+}
+  .btnCentro{
+  margin-left: 0;
+}
+.titu{
+    margin-left: 0;
+  }
+  .d {
+  margin-bottom: 1%;
+  }
+  .titu{
+    margin-left: 0;
+  }
+
+}
+@media (max-width: 295px) {
+  .btn-start {
+   font-size: 1rem;
+  }
+  .nivel {
+    font-size: 1em;
+    border: 1px solid #2f5f8d;
+  }
+  p{
+    margin-top: 25px;
+  }
+
+}
+@media (width: 700px) and (orientation: landscape) { 
+
+  .p {
+      margin-top: 155px;
+  }
+}
+/*media querys fin*/
