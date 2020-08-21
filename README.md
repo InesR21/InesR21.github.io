@@ -16,4 +16,4 @@
 > ¡Próximamente!
 
 
-> Si te gusta el juego compartelo, y si tienes ideas para mejorarlo te queremos escuchar.
+> Si te gusta el juego compartelo con este link https://inesr21.github.io/, y si tienes ideas para mejorarlo te queremos escuchar.
