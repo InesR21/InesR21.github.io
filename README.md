@@ -11,9 +11,6 @@
 > Puedes clonar el Repositorio desde la consola de Git>
     git clone https://github.com/InesR21/simonDice.git
  
-### Documentación
-
-> ¡Próximamente!
-
+### Comparte
 
 > Si te gusta el juego compartelo con este link https://inesr21.github.io/, y si tienes ideas para mejorarlo te queremos escuchar.
